@@ -13,7 +13,8 @@ dir.create("sorties", showWarnings = FALSE)
 theme_set(theme_minimal(base_size = 12) +
   theme(plot.title = element_text(face = "bold"),
         plot.caption = element_text(colour = "grey40", size = 8, hjust = 0),
-        panel.grid.minor = element_blank(), legend.position = "bottom"))
+        panel.grid.minor = element_blank(), legend.position = "bottom",
+        plot.background = element_rect(fill = "white", colour = NA)))  # fond opaque : lisible en mode sombre
 bleu <- "#1f4e79"; gris <- "grey70"
 
 # ---------------------------------------------------------------------------
