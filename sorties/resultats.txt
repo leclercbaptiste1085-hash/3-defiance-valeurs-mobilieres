@@ -1,0 +1,99 @@
+== Part des valeurs mobilières dans les actifs financiers des ménages, 2025 (%) ==
+# A tibble: 10 × 4
+   pays      part_vm part_depots part_assvie
+   <chr>       <dbl>       <dbl>       <dbl>
+ 1 Finlande     30.9        28.6        13  
+ 2 Belgique     28.3        29.1         9.3
+ 3 Italie       24.9        24.8        12.5
+ 4 Espagne      24.2        33.3         5.3
+ 5 Allemagne    24.2        36.4        12.7
+ 6 Autriche     22.2        36.9         6.5
+ 7 Suède        19.1        12.3         6.1
+ 8 Danemark     14.2        12.9        25.4
+ 9 France       10.9        28.6        26  
+10 Pays-Bas      6.5        20.6         3  
+
+== Régression 1 : part_vm ~ France + log(PIB/hab) + effets année (erreurs groupées par pays) ==
+                Estimate Std. Error   t value    Pr(>|t|)
+(Intercept)   1.54949756 0.97536605  1.588632 0.113284256
+franceTRUE   -0.07889295 0.02446695 -3.224469 0.001413214
+log(pib_hab) -0.13372606 0.09756774 -1.370597 0.171610213
+
+N = 310 observations pays-année, 10 pays, 1995 - 2025 
+
+== Mémoire des crises (a) : taux de détention vs rendement moyen des 10 années précédentes ==
+# A tibble: 7 × 3
+  annee  taux rdt_10a
+  <int> <dbl>   <dbl>
+1  1998  21.2 0.127  
+2  2004  24.2 0.0761 
+3  2010  20.1 0.00249
+4  2015  17.6 0.0480 
+5  2018  16.3 0.0286 
+6  2021  16.9 0.0516 
+7  2024  17.4 0.0646 
+Corrélation : 0.42 | p = 0.35 | n = 7 : indicatif
+
+== Mémoire des crises (b) : achats nets ~ rendement moyen des 3 années précédentes (Newey-West, 2 retards) ==
+           serie correlation   coef p_newey_west adf_p  n
+1 actions_direct       -0.50 -0.007        0.008 0.010 27
+2          fonds        0.59  0.017        0.000 0.388 27
+
+== INSEE : taux de détention de valeurs mobilières (%) ==
+# A tibble: 7 × 2
+  annee  taux
+  <int> <dbl>
+1  1998  21.2
+2  2004  24.2
+3  2010  20.1
+4  2015  17.6
+5  2018  16.3
+6  2021  16.9
+7  2024  17.4
+
+== INSEE : par décile de niveau de vie, 2024 (%) ==
+# A tibble: 10 × 2
+   decile  taux
+   <chr>  <dbl>
+ 1 D1       6.2
+ 2 D2       3.5
+ 3 D3       7.5
+ 4 D4       9.6
+ 5 D5      12.6
+ 6 D6      14.6
+ 7 D7      17.8
+ 8 D8      22.2
+ 9 D9      32.6
+10 D10     47.9
+
+== AMF ==
+  annee refuse_tout_risque interet_actions confiance_actions
+1  2017                 52              28                NA
+2  2018                 52              30                NA
+3  2019                 54              30                NA
+4  2020                 50              30                NA
+5  2021                 43              29                NA
+6  2022                 42              25                NA
+7  2023                 42              32                NA
+8  2024                 43              32                28
+9  2025                 41              34                33
+  actions_trop_risquees actions_reservees_connaisseurs
+1                    NA                             NA
+2                    NA                             NA
+3                    NA                             NA
+4                    NA                             NA
+5                    NA                             NA
+6                    NA                             NA
+7                    NA                             NA
+8                    66                             71
+9                    68                             73
+  actions_contraires_valeurs
+1                         NA
+2                         NA
+3                         NA
+4                         NA
+5                         NA
+6                         NA
+7                         NA
+8                         41
+9                         42
